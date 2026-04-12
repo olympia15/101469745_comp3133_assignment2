@@ -1,0 +1,139 @@
+<div class="min-vh-100" style="background:#0f1117; color:#e0e0e0;">
+    <div class="container py-4">
+
+        <!-- Header -->
+        <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+          <div>
+            <h3 class="fw-bold text-white mb-0">Employee Directory</h3>
+            <p class="text-white-50 small mb-0">{{ employees.length }} employees found</p>
+          </div>
+          <a routerLink="/employees/add" class="btn text-white fw-semibold"
+            style="background: linear-gradient(135deg, #e94560, #c73652); border:none;">
+            <i class="bi bi-person-plus me-2"></i>Add Employee
+          </a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="card border-0 mb-4 p-3" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08) !important;">
+          <div class="row g-2 align-items-end">
+            <div class="col-md-4">
+              <label class="form-label text-white-50 small mb-1">Search by Position</label>
+              <input type="text" class="form-control border-0 text-white"
+                style="background:rgba(255,255,255,0.08);"
+                [(ngModel)]="searchPosition" placeholder="e.g. Engineer" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-white-50 small mb-1">Search by Department</label>
+              <input type="text" class="form-control border-0 text-white"
+                style="background:rgba(255,255,255,0.08);"
+                [(ngModel)]="searchDepartment" placeholder="e.g. Engineering" />
+            </div>
+            <div class="col-md-4 d-flex gap-2">
+              <button class="btn text-white flex-grow-1"
+                style="background:linear-gradient(135deg,#e94560,#c73652); border:none;"
+                (click)="onSearch()" [disabled]="searchLoading">
+                @if (searchLoading) { <span class="spinner-border spinner-border-sm me-1"></span> }
+                <i class="bi bi-search me-1"></i>Search
+              </button>
+              <button class="btn btn-outline-secondary text-white-50" (click)="clearSearch()">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error -->
+        @if (errorMsg) {
+          <div class="alert border-0 mb-4" style="background:rgba(233,69,96,0.15); color:#ff6b8a;">
+            <i class="bi bi-exclamation-triangle me-2"></i>{{ errorMsg }}
+          </div>
+        }
+
+        <!-- Loading -->
+        @if (loading) {
+          <div class="text-center py-5">
+            <div class="spinner-border" style="color:#e94560"></div>
+            <p class="text-white-50 mt-3">Loading employees...</p>
+          </div>
+        }
+
+        <!-- Table -->
+        @if (!loading && employees.length > 0) {
+            <div class="card border-0 shadow" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08) !important; overflow:hidden;">
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover mb-0" style="--bs-table-bg: transparent; --bs-table-hover-bg: rgba(233,69,96,0.08);">
+                        <thead style="border-bottom: 2px solid rgba(233,69,96,0.4);">
+                            <tr>
+                                <th class="text-white-50 fw-normal py-3">Employee</th>
+                                <th class="text-white-50 fw-normal py-3">Position</th>
+                                <th class="text-white-50 fw-normal py-3">Department</th>
+                                <th class="text-white-50 fw-normal py-3">Salary</th>
+                                <th class="text-white-50 fw-normal py-3">Joined</th>
+                                <th class="text-white-50 fw-normal py-3 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            @for (emp of employees; track emp._id) {
+                                <tr>
+                                    <td class="py-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            @if (emp.employee_photo) {
+                                                <img [src]="emp.employee_photo" alt="photo"
+                                                  style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid rgba(233,69,96,0.5);" />
+                                            } @else {
+                                                <div class="d-flex align-items-center justify-content-center rounded-circle"
+                                                  style="width:38px;height:38px;background:rgba(233,69,96,0.2);border:2px solid rgba(233,69,96,0.3);">
+                                                  <i class="bi bi-person" style="color:#e94560"></i>
+                                                </div>
+                                            }
+                                            <div>
+                                                <div class="text-white fw-medium">{{ emp.first_name }} {{ emp.last_name }}</div>
+                                                <div class="text-white-50 small">{{ emp.email }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 text-white-50">{{ emp.position }}</td>
+                                    <td class="py-3">
+                                        <span class="badge rounded-pill px-3" style="background:rgba(233,69,96,0.15); color:#e94560; border:1px solid rgba(233,69,96,0.3);">
+                                          {{ emp.department }}
+                                        </span>
+                                    </td>
+                                    <td class="py-3 text-white-50">\${{ emp.salary | number }}</td>
+                                    <td class="py-3 text-white-50">{{ emp.date_of_joining | date:'mediumDate' }}</td>
+                                    <td class="py-3 text-center">
+                                        <div class="d-flex gap-2 justify-content-center">
+                                            <a [routerLink]="['/employees', emp._id]" class="btn btn-sm border-0"
+                                                style="background:rgba(255,255,255,0.06); color:#aaa;" title="View">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a [routerLink]="['/employees/edit', emp._id]" class="btn btn-sm border-0"
+                                                style="background:rgba(255,255,255,0.06); color:#aaa;" title="Edit">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                            <button class="btn btn-sm border-0"
+                                                style="background:rgba(233,69,96,0.1); color:#e94560;" title="Delete"
+                                                (click)="onDelete(emp._id)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+        <!-- Empty state -->
+        @if (!loading && employees.length === 0 && !errorMsg) {
+            <div class="text-center py-5">
+                <i class="bi bi-people" style="font-size:3rem; color:rgba(233,69,96,0.3)"></i>
+                <p class="text-white-50 mt-3">No employees found.</p>
+                <a routerLink="/employees/add" class="btn btn-sm text-white"
+                    style="background:linear-gradient(135deg,#e94560,#c73652); border:none;">Add your first employee</a>
+            </div>
+        }
+    </div>
+</div>

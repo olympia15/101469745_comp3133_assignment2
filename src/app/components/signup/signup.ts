@@ -14,7 +14,6 @@ import { SIGNUP_MUTATION } from '../../graphql/mutations';
   styleUrl: './signup.css',
 })
 
-// SignupComponent handles user registration logic and UI
 export class Signup {
   signupForm: FormGroup;
   loading = false;

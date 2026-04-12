@@ -16,5 +16,12 @@ export const routes: Routes = [
     {
         path: 'signup',
         loadComponent: () => import('./components/signup/signup').then((m) => m.Signup),
-    }
+    },
+
+    // Employee list route, protected by authGuard
+    {
+        path: 'employees',
+        canActivate: [authGuard],
+        loadComponent: () => import('./components/employee-list/employee-list').then((m) => m.EmployeeList),
+    },
 ];
