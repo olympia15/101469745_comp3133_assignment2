@@ -6,6 +6,7 @@ import {
     GET_ALL_EMPLOYEES, GET_EMPLOYEE_BY_ID, SEARCH_EMPLOYEES,
     ADD_EMPLOYEE, UPDATE_EMPLOYEE, DELETE_EMPLOYEE,
 } from '../graphql/mutations';
+import { environment } from '../../environments/environment';
 
 // Employee interface and service for managing employee data
 export interface Employee {
