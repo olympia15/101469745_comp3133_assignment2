@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 // Navbar component for navigation and user authentication status display
 @Component({
   selector: 'app-navbar',
+  standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
