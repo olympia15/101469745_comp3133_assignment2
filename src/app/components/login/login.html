@@ -1,0 +1,84 @@
+<div class="min-vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-lg-4">
+                
+                <div class="text-center mb-4">
+                    <div class="mb-3" style="font-size:3rem">
+                        <i class="bi bi-people-fill" style="color:#e94560"></i>
+                    </div>
+                    
+                    <h2 class="text-white fw-bold mb-1" style="letter-spacing:2px">EMS</h2>
+                    
+                    <p class="text-white-50 small">Employee Management System</p>
+                </div>
+                
+                <div class="card border-0 shadow-lg" style="background:rgba(255,255,255,0.05); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.1) !important;">
+                    <div class="card-body p-4">
+                        <h5 class="text-white fw-semibold mb-4">Sign In</h5>
+                        
+                        @if (errorMsg) {
+                            <div class="alert alert-danger py-2 small border-0" style="background:rgba(233,69,96,0.2); color:#ff6b8a;">
+                                <i class="bi bi-exclamation-circle me-1"></i>{{ errorMsg }}
+                            </div>
+                        }
+
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                            <div class="mb-3">
+                                <label class="form-label text-white-50 small">Username or Email</label>
+                                
+                                <input
+                                    type="text"
+                                    class="form-control border-0 text-white"
+                                    style="background:rgba(255,255,255,0.08); "
+                                    formControlName="usernameOrEmail"
+                                    placeholder="Enter username or email"
+                                    [class.is-invalid]="f['usernameOrEmail'].invalid && f['usernameOrEmail'].touched"
+                                />
+
+                                @if (f['usernameOrEmail'].invalid && f['usernameOrEmail'].touched) {
+                                    <div class="invalid-feedback">Username or email is required.</div>
+                                }
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label text-white-50 small">Password</label>
+                                
+                                <input
+                                    type="password"
+                                    class="form-control border-0 text-white"
+                                    style="background:rgba(255,255,255,0.08);"
+                                    formControlName="password"
+                                    placeholder="Enter password"
+                                    [class.is-invalid]="f['password'].invalid && f['password'].touched"
+                                />
+                                
+                                @if (f['password'].invalid && f['password'].touched) {
+                                    <div class="invalid-feedback">Password is required.</div>
+                                }
+                            </div>
+                            
+                            <button
+                                type="submit"
+                                class="btn w-100 fw-semibold text-white"
+                                style="background: linear-gradient(135deg, #e94560, #c73652); border:none;"
+                                [disabled]="loading"
+                            >
+                            
+                                @if (loading) { 
+                                    <span class="spinner-border spinner-border-sm me-2"></span>
+                                }
+                        
+                            Sign In</button>
+                        
+                        </form>
+
+                        <p class="text-center text-white-50 small mt-4 mb-0">
+                            Don't have an account?<a routerLink="/signup" style="color:#e94560">Sign up</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

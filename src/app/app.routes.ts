@@ -2,10 +2,19 @@ import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-    
+
+    // Default route redirects to login
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+    // Protected home route that requires authentication
     {
-        // signup route for user registration
+        path: 'login',
+        loadComponent: () => import('./components/login/login').then((m) => m.Login),
+    },
+    
+    // Signup route
+    {
         path: 'signup',
-        loadComponent: () => import('./components/signup/signup').then((m) => m.SignupComponent),
+        loadComponent: () => import('./components/signup/signup').then((m) => m.Signup),
     }
 ];
