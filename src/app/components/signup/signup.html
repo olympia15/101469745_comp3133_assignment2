@@ -1,4 +1,4 @@
-<div class="min-vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+<div class="min-vh-100 d-flex align-items-center justify-content-center">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-5 col-lg-4">
@@ -11,20 +11,20 @@
                     <p class="text-white-50 small">Employee Management System</p>
                 </div>
 
-                <div class="card border-0 shadow-lg" style="background:rgba(255,255,255,0.05); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.1) !important;">
+                <div class="card border-0 shadow-lg">
                     
                     <div class="card-body p-4">
 
                         <h5 class="text-white fw-semibold mb-4">Sign Up</h5>
                         
                         @if (errorMsg) {
-                            <div class="alert alert-danger py-2 small border-0" style="background:rgba(233,69,96,0.2); color:#ff6b8a;">
+                            <div class="alert alert-danger py-2 small border-0" style="color:#ff6b8a;">
                               <i class="bi bi-exclamation-circle me-1"></i>{{ errorMsg }}
                             </div>
                         }
                         
                         @if (successMsg) {
-                            <div class="alert alert-success py-2 small border-0" style="background:rgba(25,200,100,0.2); color:#5dbb84;">
+                            <div class="alert alert-success py-2 small border-0" style="color:#5dbb84;">
                               <i class="bi bi-check-circle me-1"></i>{{ successMsg }}
                             </div>
                         }
@@ -33,7 +33,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label text-white-50 small">Username</label>
-                                <input type="text" class="form-control border-0 text-white"
+                                <input type="text" class="form-control border-0"
                                     style="background:rgba(255,255,255,0.08);"
                                     formControlName="username" placeholder="Choose a username"
                                     [class.is-invalid]="f['username'].invalid && f['username'].touched" />
@@ -45,7 +45,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label text-white-50 small">Email</label>
-                                <input type="email" class="form-control border-0 text-white"
+                                <input type="email" class="form-control border-0"
                                     style="background:rgba(255,255,255,0.08);"
                                     formControlName="email" placeholder="Enter your email"
                                     [class.is-invalid]="f['email'].invalid && f['email'].touched" />
@@ -61,7 +61,7 @@
 
                             <div class="mb-4">
                                 <label class="form-label text-white-50 small">Password</label>
-                                <input type="password" class="form-control border-0 text-white"
+                                <input type="password" class="form-control border-0"
                                     style="background:rgba(255,255,255,0.08);"
                                     formControlName="password" placeholder="Min. 6 characters"
                                     [class.is-invalid]="f['password'].invalid && f['password'].touched" />

@@ -18,7 +18,7 @@
                         <h5 class="text-white fw-semibold mb-4">Sign In</h5>
                         
                         @if (errorMsg) {
-                            <div class="alert alert-danger py-2 small border-0" style="background:rgba(233,69,96,0.2); color:#ff6b8a;">
+                            <div class="alert alert-danger py-2 small border-0" style="color:#ff6b8a;">
                                 <i class="bi bi-exclamation-circle me-1"></i>{{ errorMsg }}
                             </div>
                         }
@@ -29,8 +29,7 @@
                                 
                                 <input
                                     type="text"
-                                    class="form-control border-0 text-white"
-                                    style="background:rgba(255,255,255,0.08); "
+                                    class="form-control border-0"
                                     formControlName="usernameOrEmail"
                                     placeholder="Enter username or email"
                                     [class.is-invalid]="f['usernameOrEmail'].invalid && f['usernameOrEmail'].touched"
@@ -46,8 +45,7 @@
                                 
                                 <input
                                     type="password"
-                                    class="form-control border-0 text-white"
-                                    style="background:rgba(255,255,255,0.08);"
+                                    class="form-control border-0"
                                     formControlName="password"
                                     placeholder="Enter password"
                                     [class.is-invalid]="f['password'].invalid && f['password'].touched"

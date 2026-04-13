@@ -8,22 +8,13 @@ body {
   font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
-/* Form control dark theme */
-.form-control,
-.form-select {
-  color: #e0e0e0 !important;
-}
-
 .form-control::placeholder {
   color: rgba(255, 255, 255, 0.25) !important;
 }
 
 .form-control:focus,
 .form-select:focus {
-  background: rgba(255, 255, 255, 0.12) !important;
-  border-color: rgba(233, 69, 96, 0.5) !important;
-  color: #fff !important;
-  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15) !important;
+  color: #212529 !important;
 }
 
 /* Navbar active link */
