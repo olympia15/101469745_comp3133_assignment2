@@ -1,0 +1,149 @@
+<div class="min-vh-100" style="background:#0f1117;">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <a routerLink="/employees" class="btn btn-sm border-0 text-white-50"
+                        style="background:rgba(255,255,255,0.06);">
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <div>
+                        <h4 class="text-white fw-bold mb-0">Add New Employee</h4>
+                        <p class="text-white-50 small mb-0">Fill in the details below</p>
+                    </div>
+                </div>
+
+                @if (errorMsg) {
+                    <div class="alert border-0 mb-4" style="background:rgba(233,69,96,0.15); color:#ff6b8a;">
+                        <i class="bi bi-exclamation-circle me-1"></i>{{ errorMsg }}
+                    </div>
+                }
+
+                <div class="card border-0" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08) !important;">
+                    <div class="card-body p-4">
+                        <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+                            <div class="row g-3">
+
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">First Name *</label>
+                                    <input type="text" class="form-control border-0 text-white"
+                                        style="background:rgba(255,255,255,0.08);"
+                                        formControlName="first_name"
+                                        [class.is-invalid]="f['first_name'].invalid && f['first_name'].touched" />
+                                    <div class="invalid-feedback">First name is required.</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">Last Name *</label>
+                                    <input type="text" class="form-control border-0 text-white"
+                                        style="background:rgba(255,255,255,0.08);"
+                                        formControlName="last_name"
+                                        [class.is-invalid]="f['last_name'].invalid && f['last_name'].touched" />
+                                    <div class="invalid-feedback">Last name is required.</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">Email *</label>
+                                    <input type="email" class="form-control border-0 text-white"
+                                        style="background:rgba(255,255,255,0.08);"
+                                        formControlName="email"
+                                        [class.is-invalid]="f['email'].invalid && f['email'].touched" />
+                                    @if (f['email'].errors?.['required'] && f['email'].touched) {
+                                        <div class="invalid-feedback">Email is required.</div>
+                                    }
+                                    @if (f['email'].errors?.['email'] && f['email'].touched) {
+                                        <div class="invalid-feedback">Enter a valid email.</div>
+                                    }
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">Gender</label>
+                                    <select class="form-select border-0 text-white"
+                                        style="background:rgba(255,255,255,0.08);"
+                                        formControlName="gender">
+                                        <option value="" style="background:#1a1a2e">Select gender</option>
+                                        <option value="Male" style="background:#1a1a2e">Male</option>
+                                        <option value="Female" style="background:#1a1a2e">Female</option>
+                                        <option value="Other" style="background:#1a1a2e">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">Position *</label>
+                                    <input type="text" class="form-control border-0 text-white"
+                                        style="background:rgba(255,255,255,0.08);"
+                                        formControlName="position"
+                                        [class.is-invalid]="f['position'].invalid && f['position'].touched" />
+                                    <div class="invalid-feedback">Position is required.</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">Department *</label>
+                                    <input type="text" class="form-control border-0 text-white"
+                                        style="background:rgba(255,255,255,0.08);"
+                                        formControlName="department"
+                                        [class.is-invalid]="f['department'].invalid && f['department'].touched" />
+                                    <div class="invalid-feedback">Department is required.</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">Salary * (min $1,000)</label>
+                                    <input type="number" class="form-control border-0 text-white"
+                                        style="background:rgba(255,255,255,0.08);"
+                                        formControlName="salary"
+                                        [class.is-invalid]="f['salary'].invalid && f['salary'].touched" />
+                                    @if (f['salary'].errors?.['required'] && f['salary'].touched) {
+                                        <div class="invalid-feedback">Salary is required.</div>
+                                    }
+                                    @if (f['salary'].errors?.['min'] && f['salary'].touched) {
+                                        <div class="invalid-feedback">Salary must be at least 1000.</div>
+                                    }
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">Date of Joining *</label>
+                                    <input type="date" class="form-control border-0 text-white"
+                                        style="background:rgba(255,255,255,0.08); color-scheme:dark;"
+                                        formControlName="date_of_joining"
+                                        [class.is-invalid]="f['date_of_joining'].invalid && f['date_of_joining'].touched" />
+                                    <div class="invalid-feedback">Date of joining is required.</div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label text-white-50 small">Profile Photo</label>
+                                    <input type="file" class="form-control border-0 text-white"
+                                        style="background:rgba(255,255,255,0.08);"
+                                        accept="image/*" (change)="onFileChange($event)" />
+                                    @if (uploadLoading) {
+                                        <div class="small text-white-50 mt-1">
+                                        <span class="spinner-border spinner-border-sm me-1"></span>Uploading...
+                                        </div>
+                                    }
+                                    @if (photoUrl) {
+                                        <div class="mt-2 d-flex align-items-center gap-2">
+                                        <img [src]="photoUrl" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(233,69,96,0.5);" />
+                                        <span class="text-white-50 small">Photo uploaded ✓</span>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex gap-3 mt-4">
+                                <button type="submit" class="btn text-white fw-semibold px-4"
+                                style="background:linear-gradient(135deg,#e94560,#c73652); border:none;"
+                                [disabled]="loading || uploadLoading">
+                                @if (loading) { <span class="spinner-border spinner-border-sm me-2"></span> }
+                                <i class="bi bi-person-plus me-2"></i>Add Employee
+                                </button>
+                                <a routerLink="/employees" class="btn border-0 text-white-50"
+                                style="background:rgba(255,255,255,0.06);">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

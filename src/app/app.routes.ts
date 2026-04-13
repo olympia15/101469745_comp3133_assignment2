@@ -24,4 +24,11 @@ export const routes: Routes = [
         canActivate: [authGuard],
         loadComponent: () => import('./components/employee-list/employee-list').then((m) => m.EmployeeList),
     },
+
+    // Employee details route, protected by authGuard
+    {
+        path: 'employees/add',
+        canActivate: [authGuard],
+        loadComponent: () => import('./components/employee-add/employee-add').then((m) => m.AddEmployee),
+    }
 ];
