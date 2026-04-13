@@ -17,10 +17,10 @@
         <div class="card border-0 mb-4 p-3" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08) !important;">
           <div class="row g-2 align-items-end">
             <div class="col-md-4">
-              <label class="form-label text-white-50 small mb-1">Search by Position</label>
+              <label class="form-label text-white-50 small mb-1">Search by Designation</label>
               <input type="text" class="form-control border-0 text-white"
                 style="background:rgba(255,255,255,0.08);"
-                [(ngModel)]="searchPosition" placeholder="e.g. Engineer" />
+                [(ngModel)]="searchDesignation" placeholder="e.g. Engineer" />
             </div>
             <div class="col-md-4">
               <label class="form-label text-white-50 small mb-1">Search by Department</label>
@@ -65,7 +65,7 @@
                         <thead style="border-bottom: 2px solid rgba(233,69,96,0.4);">
                             <tr>
                                 <th class="text-white-50 fw-normal py-3">Employee</th>
-                                <th class="text-white-50 fw-normal py-3">Position</th>
+                                <th class="text-white-50 fw-normal py-3">Designation</th>
                                 <th class="text-white-50 fw-normal py-3">Department</th>
                                 <th class="text-white-50 fw-normal py-3">Salary</th>
                                 <th class="text-white-50 fw-normal py-3">Joined</th>
@@ -93,7 +93,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="py-3 text-white-50">{{ emp.position }}</td>
+                                    <td class="py-3 text-white-50">{{ emp.designation }}</td>
                                     <td class="py-3">
                                         <span class="badge rounded-pill px-3" style="background:rgba(233,69,96,0.15); color:#e94560; border:1px solid rgba(233,69,96,0.3);">
                                           {{ emp.department }}

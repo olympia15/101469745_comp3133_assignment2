@@ -26,7 +26,7 @@ export class AddEmployee {
       last_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       gender: [''],
-      position: ['', Validators.required],
+      designation: ['', Validators.required],
       department: ['', Validators.required],
       salary: [null, [Validators.required, Validators.min(1000)]],
       date_of_joining: ['', Validators.required],

@@ -15,7 +15,7 @@ export interface Employee {
     last_name: string;
     email: string;
     gender?: string;
-    position: string;
+    designation: string;
     salary: number;
     date_of_joining: string;
     department: string;
@@ -46,15 +46,15 @@ export class EmployeeService {
           .valueChanges.pipe(map((r) => r.data.searchEmployeeById));
     }
 
-    // Search employees based on position and department
-    searchEmployees(position?: string, department?: string): Observable<Employee[]> {
+    // Search employees based on designation and department
+    searchEmployees(designation?: string, department?: string): Observable<Employee[]> {
         return this.apollo
-          .watchQuery<{ searchEmployeeByPositionOrDepartment: Employee[] }>({
+          .watchQuery<{ searchEmployeeByDesignationOrDepartment: Employee[] }>({
             query: SEARCH_EMPLOYEES,
-            variables: { position, department },
+            variables: { designation, department },
             fetchPolicy: 'network-only',
           })
-          .valueChanges.pipe(map((r) => r.data.searchEmployeeByPositionOrDepartment));
+          .valueChanges.pipe(map((r) => r.data.searchEmployeeByDesignationOrDepartment));
     }   
 
     // Add a new employee to the server

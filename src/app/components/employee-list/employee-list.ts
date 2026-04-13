@@ -17,7 +17,7 @@ export class EmployeeList implements OnInit {
   loading = false;
   searchLoading = false;
   errorMsg = '';
-  searchPosition = '';
+  searchDesignation = '';
   searchDepartment = '';
 
   // Inject the EmployeeService to fetch employee data
@@ -38,13 +38,13 @@ export class EmployeeList implements OnInit {
     });
   }
 
-  // Search employees based on position and department
+  // Search employees based on designation and department
   onSearch(): void {
-    if (!this.searchPosition && !this.searchDepartment) { this.loadAll(); return; }
+    if (!this.searchDesignation && !this.searchDepartment) { this.loadAll(); return; }
     this.searchLoading = true;
     this.errorMsg = '';
     this.employeeService.searchEmployees(
-      this.searchPosition || undefined,
+      this.searchDesignation || undefined,
       this.searchDepartment || undefined
     ).subscribe({
       next: (data) => { this.employees = data; this.searchLoading = false; },
@@ -54,7 +54,7 @@ export class EmployeeList implements OnInit {
 
   // Clear search filters and reload all employees
   clearSearch(): void {
-    this.searchPosition = '';
+    this.searchDesignation = '';
     this.searchDepartment = '';
     this.loadAll();
   }

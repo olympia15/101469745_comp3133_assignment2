@@ -45,7 +45,7 @@ export class EmployeeEdit implements OnInit {
           last_name: [emp.last_name, Validators.required],
           email: [emp.email, [Validators.required, Validators.email]],
           gender: [emp.gender || ''],
-          designation: [emp.position, Validators.required],
+          designation: [emp.designation, Validators.required],
           department: [emp.department, Validators.required],
           salary: [emp.salary, [Validators.required, Validators.min(1000)]],
           date_of_joining: [doj, Validators.required],

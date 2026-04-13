@@ -37,7 +37,7 @@ export const GET_ALL_EMPLOYEES = gql`
       last_name
       email
       gender
-      position
+      designation
       salary
       date_of_joining
       department
@@ -54,7 +54,7 @@ export const GET_EMPLOYEE_BY_ID = gql`
       last_name
       email
       gender
-      position
+      designation
       salary
       date_of_joining
       department
@@ -64,13 +64,13 @@ export const GET_EMPLOYEE_BY_ID = gql`
 `;
 
 export const SEARCH_EMPLOYEES = gql`
-  query SearchEmployeeByPositionOrDepartment($position: String, $department: String) {
-    searchEmployeeByPositionOrDepartment(position: $position, department: $department) {
+  query SearchEmployeeByDesignationOrDepartment($designation: String, $department: String) {
+    searchEmployeeByDesignationOrDepartment(designation: $designation, department: $department) {
       _id
       first_name
       last_name
       email
-      position
+      designation
       department
       salary
       date_of_joining
@@ -85,7 +85,7 @@ export const ADD_EMPLOYEE = gql`
     $last_name: String!
     $email: String!
     $gender: String
-    $position: String!
+    $designation: String!
     $salary: Float!
     $date_of_joining: String!
     $department: String!
@@ -96,7 +96,7 @@ export const ADD_EMPLOYEE = gql`
       last_name: $last_name
       email: $email
       gender: $gender
-      position: $position
+      designation: $designation
       salary: $salary
       date_of_joining: $date_of_joining
       department: $department
@@ -106,7 +106,7 @@ export const ADD_EMPLOYEE = gql`
       first_name
       last_name
       email
-      position
+      designation
       department
     }
   }
@@ -119,7 +119,7 @@ export const UPDATE_EMPLOYEE = gql`
     $last_name: String
     $email: String
     $gender: String
-    $position: String
+    $designation: String
     $salary: Float
     $date_of_joining: String
     $department: String
@@ -131,7 +131,7 @@ export const UPDATE_EMPLOYEE = gql`
       last_name: $last_name
       email: $email
       gender: $gender
-      position: $position
+      designation: $designation
       salary: $salary
       date_of_joining: $date_of_joining
       department: $department
@@ -141,7 +141,7 @@ export const UPDATE_EMPLOYEE = gql`
       first_name
       last_name
       email
-      position
+      designation
       department
       salary
     }
