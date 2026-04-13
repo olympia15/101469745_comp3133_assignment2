@@ -1,0 +1,119 @@
+<div class="min-vh-100" style="background:#0f1117;">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+
+                <div class="d-flex align-items-center gap-3 mb-4">
+                <a routerLink="/employees" class="btn btn-sm border-0 text-white-50"
+                    style="background:rgba(255,255,255,0.06);">
+                    <i class="bi bi-arrow-left"></i>
+                </a>
+                <h4 class="text-white fw-bold mb-0">Employee Details</h4>
+                </div>
+
+                @if (loading) {
+                <div class="text-center py-5">
+                    <div class="spinner-border" style="color:#e94560"></div>
+                    <p class="text-white-50 mt-3">Loading...</p>
+                </div>
+                }
+
+                @if (errorMsg) {
+                <div class="alert border-0" style="background:rgba(233,69,96,0.15); color:#ff6b8a;">
+                    <i class="bi bi-exclamation-circle me-1"></i>{{ errorMsg }}
+                </div>
+                }
+
+                @if (employee && !loading) {
+                    <!-- Profile Card -->
+                    <div class="card border-0 mb-4 overflow-hidden" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08) !important;">
+                        <!-- Top accent bar -->
+                        <div style="height:4px; background:linear-gradient(90deg,#e94560,#c73652,#0f3460);"></div>
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center gap-4 flex-wrap">
+                                @if (employee.employee_photo) {
+                                <img [src]="employee.employee_photo" alt="photo"
+                                    style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid rgba(233,69,96,0.5);" />
+                                } @else {
+                                <div class="d-flex align-items-center justify-content-center rounded-circle"
+                                    style="width:90px;height:90px;background:rgba(233,69,96,0.1);border:3px solid rgba(233,69,96,0.3);flex-shrink:0;">
+                                    <i class="bi bi-person" style="font-size:2.5rem;color:#e94560"></i>
+                                </div>
+                                }
+                                <div>
+                                <h3 class="text-white fw-bold mb-1">{{ employee.first_name }} {{ employee.last_name }}</h3>
+                                <p class="mb-1" style="color:#e94560">{{ employee.position }}</p>
+                                <span class="badge rounded-pill px-3" style="background:rgba(233,69,96,0.15); color:#e94560; border:1px solid rgba(233,69,96,0.3);">
+                                    {{ employee.department }}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Info Grid -->
+                    <div class="card border-0 mb-4" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08) !important;">
+                        <div class="card-body p-4">
+                        <h6 class="text-white-50 fw-semibold mb-3 text-uppercase small" style="letter-spacing:1px">Contact & Personal</h6>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                            <div class="p-3 rounded" style="background:rgba(255,255,255,0.04);">
+                                <div class="text-white-50 small mb-1"><i class="bi bi-envelope me-2"></i>Email</div>
+                                <div class="text-white">{{ employee.email }}</div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="p-3 rounded" style="background:rgba(255,255,255,0.04);">
+                                <div class="text-white-50 small mb-1"><i class="bi bi-gender-ambiguous me-2"></i>Gender</div>
+                                <div class="text-white">{{ employee.gender || '—' }}</div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <h6 class="text-white-50 fw-semibold mb-3 mt-4 text-uppercase small" style="letter-spacing:1px">Employment</h6>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                            <div class="p-3 rounded" style="background:rgba(255,255,255,0.04);">
+                                <div class="text-white-50 small mb-1"><i class="bi bi-briefcase me-2"></i>Position</div>
+                                <div class="text-white">{{ employee.position }}</div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="p-3 rounded" style="background:rgba(255,255,255,0.04);">
+                                <div class="text-white-50 small mb-1"><i class="bi bi-building me-2"></i>Department</div>
+                                <div class="text-white">{{ employee.department }}</div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="p-3 rounded" style="background:rgba(255,255,255,0.04);">
+                                <div class="text-white-50 small mb-1"><i class="bi bi-cash-stack me-2"></i>Salary</div>
+                                <div class="text-white fw-semibold" style="color:#5dbb84 !important;">\${{ employee.salary | number }}</div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="p-3 rounded" style="background:rgba(255,255,255,0.04);">
+                                <div class="text-white-50 small mb-1"><i class="bi bi-calendar-check me-2"></i>Date of Joining</div>
+                                <div class="text-white">{{ employee.date_of_joining | date:'longDate' }}</div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="d-flex gap-3">
+                        <a [routerLink]="['/employees/edit', employee._id]"
+                        class="btn text-white fw-semibold px-4"
+                        style="background:linear-gradient(135deg,#e94560,#c73652); border:none;">
+                        <i class="bi bi-pencil me-2"></i>Edit Employee
+                        </a>
+                        <a routerLink="/employees" class="btn border-0 text-white-50"
+                        style="background:rgba(255,255,255,0.06);">
+                        <i class="bi bi-arrow-left me-2"></i>Back to List
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
