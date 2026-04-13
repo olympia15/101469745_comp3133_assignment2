@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global overrides */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #0f1117;
+}
+
+/* Form control dark theme */
+.form-control,
+.form-select {
+  color: #e0e0e0 !important;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(233, 69, 96, 0.5) !important;
+  color: #fff !important;
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15) !important;
+}
+
+/* Navbar active link */
+.navbar .nav-link.active {
+  color: #e94560 !important;
+}
+
+/* Spinner color */
+.spinner-border {
+  border-color: rgba(233, 69, 96, 0.25);
+  border-top-color: #e94560;
+}
+
+/* Table row hover */
+.table-hover tbody tr:hover td {
+  color: #fff !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(233, 69, 96, 0.4);
+  border-radius: 3px;
+}
