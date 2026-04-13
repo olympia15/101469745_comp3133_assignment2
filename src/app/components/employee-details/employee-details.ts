@@ -8,8 +8,7 @@ import { EmployeeService, Employee } from '../../services/employee.service';
   selector: 'app-employee-details',
   imports: [CommonModule, RouterLink],
   standalone: true,
-  templateUrl: './employee-details.html',
-  styleUrl: './employee-details.css',
+  templateUrl: './employee-details.html'
 })
 
 export class EmployeeDetails implements OnInit {

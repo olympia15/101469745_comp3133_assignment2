@@ -9,8 +9,7 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
-  templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
+  templateUrl: './navbar.html'
 })
 
 // Navbar class that injects AuthService to manage user authentication state

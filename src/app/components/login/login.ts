@@ -11,8 +11,7 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-login',
   imports: [ReactiveFormsModule, CommonModule, RouterLink],
   standalone: true,
-  templateUrl: './login.html',
-  styleUrl: './login.css',
+  templateUrl: './login.html'
 })
 
 export class Login {

@@ -9,8 +9,7 @@ import { EmployeeService } from '../../services/employee.service';
   selector: 'app-employee-add',
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   standalone: true,
-  templateUrl: './employee-add.html',
-  styleUrl: './employee-add.css',
+  templateUrl: './employee-add.html'
 })
 
 export class AddEmployee {

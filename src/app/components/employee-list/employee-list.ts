@@ -9,8 +9,7 @@ import { EmployeeService, Employee } from '../../services/employee.service';
   selector: 'app-employee-list',
   imports: [CommonModule, RouterLink, FormsModule],
   standalone: true,
-  templateUrl: './employee-list.html',
-  styleUrl: './employee-list.css',
+  templateUrl: './employee-list.html'
 })
 
 export class EmployeeList implements OnInit {

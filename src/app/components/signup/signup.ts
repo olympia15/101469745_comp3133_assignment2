@@ -10,8 +10,7 @@ import { SIGNUP_MUTATION } from '../../graphql/mutations';
   selector: 'app-signup',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './signup.html',
-  styleUrl: './signup.css',
+  templateUrl: './signup.html'
 })
 
 export class Signup {

@@ -9,8 +9,7 @@ import { EmployeeService } from '../../services/employee.service';
   selector: 'app-employee-edit',
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   standalone: true,
-  templateUrl: './employee-edit.html',
-  styleUrl: './employee-edit.css',
+  templateUrl: './employee-edit.html'
 })
 
 export class EmployeeEdit implements OnInit {
